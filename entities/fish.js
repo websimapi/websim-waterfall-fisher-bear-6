@@ -91,8 +91,8 @@ export function updateFish(fish) {
     ud.swimTimer += 0.1;
     const weave = Math.sin(ud.swimTimer * ud.swimFrequency) * ud.swimAmplitude;
     fish.position.x = ud.initialX + weave;
-    // vertical bob for fluidity (reduced amplitude to avoid bounce)
-    const bob = Math.sin(ud.swimTimer * 0.6 + 1.3) * 0.02 + Math.sin(ud.swimTimer * 1.2) * 0.015;
+    // vertical bob for fluidity
+    const bob = Math.sin(ud.swimTimer * 0.8 + 1.3) * 0.08 + Math.sin(ud.swimTimer * 1.7) * 0.05;
     fish.position.y = ud.baseY + bob;
     // orientation: slight yaw + bank based on turn rate
     const dx = fish.position.x - ud.prevX;

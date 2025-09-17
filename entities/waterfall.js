@@ -7,9 +7,9 @@ export function createWaterfall() {
     const group = new THREE.Group();
     group.name = "waterfall";
     const waterWidth = 8;
+    const riverLength = 60;
     const cliffEdgeZ = 2.5;
     const cliffTopY = 2;
-    const riverLength = 40;
     const riverGeo = new THREE.PlaneGeometry(waterWidth, riverLength);
     const river = new THREE.Mesh(riverGeo, waterMat);
     river.rotation.x = -Math.PI / 2;
@@ -19,7 +19,7 @@ export function createWaterfall() {
     const fall = new THREE.Mesh(fallGeo, waterMat);
     fall.position.set(0, cliffTopY - 10, cliffEdgeZ);
     group.add(fall);
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 150; i++) {
         const foam = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), foamMat);
         const onRiver = Math.random() > 0.4;
         foam.userData.onRiver = onRiver;
@@ -39,7 +39,7 @@ export function updateWaterfall(waterfallGroup) {
     if (!waterfallGroup) return;
     const cliffEdgeZ = 2.5;
     const cliffTopY = 2;
-    const riverLength = 40;
+    const riverLength = 60;
     waterfallGroup.children.forEach(child => {
         if (child.userData.velocity) {
             child.position.add(child.userData.velocity);
