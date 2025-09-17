@@ -64,7 +64,7 @@ export function createFish(scene, score = 0) {
     const riverWidth = 7;
     const xPos = (Math.random() - 0.5) * riverWidth;
     const baseY = 2.1;
-    group.position.set(xPos, baseY, -12);
+    group.position.set(xPos, baseY, -24);
     const speedMultiplier = 1 + (score / 500);
     const swimSpeed = (0.05 + Math.random() * 0.05) * speedMultiplier;
     group.userData = {
