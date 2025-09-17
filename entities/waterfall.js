@@ -7,7 +7,7 @@ export function createWaterfall() {
     const group = new THREE.Group();
     group.name = "waterfall";
     const waterWidth = 8;
-    const cliffEdgeZ = 2.5;
+    const cliffEdgeZ = -8;
     const cliffTopY = 2;
     const riverGeo = new THREE.PlaneGeometry(waterWidth, 15);
     const river = new THREE.Mesh(riverGeo, waterMat);
@@ -36,7 +36,7 @@ export function createWaterfall() {
 
 export function updateWaterfall(waterfallGroup) {
     if (!waterfallGroup) return;
-    const cliffEdgeZ = 2.5;
+    const cliffEdgeZ = -8;
     const cliffTopY = 2;
     waterfallGroup.children.forEach(child => {
         if (child.userData.velocity) {
@@ -49,4 +49,3 @@ export function updateWaterfall(waterfallGroup) {
         }
     });
 }
-

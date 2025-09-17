@@ -91,14 +91,14 @@ export function updateFish(fish) {
     ud.swimTimer += 0.1;
     const weave = Math.sin(ud.swimTimer * ud.swimFrequency) * ud.swimAmplitude;
     fish.position.x = ud.initialX + weave;
-    // vertical bob for fluidity
-    const bob = Math.sin(ud.swimTimer * 0.8 + 1.3) * 0.08 + Math.sin(ud.swimTimer * 1.7) * 0.05;
+    // vertical motion (smoother, less bounce)
+    const bob = Math.sin(ud.swimTimer * 0.4 + 0.6) * 0.02 + Math.sin(ud.swimTimer * 0.9) * 0.015;
     fish.position.y = ud.baseY + bob;
     // orientation: slight yaw + bank based on turn rate
     const dx = fish.position.x - ud.prevX;
     ud.prevX = fish.position.x;
-    fish.rotation.y = ud.baseRotY + Math.sin(ud.swimTimer * ud.swimFrequency) * 0.12;
-    fish.rotation.z = THREE.MathUtils.clamp(-dx * 0.6, -0.3, 0.3);
+    fish.rotation.y = ud.baseRotY + Math.sin(ud.swimTimer * ud.swimFrequency) * 0.08;
+    fish.rotation.z = THREE.MathUtils.clamp(-dx * 0.45, -0.15, 0.15);
     // tail wag and fin flaps
     const tailSwing = Math.sin(ud.swimTimer * 2.2) * 0.5;
     if (ud.tailV) ud.tailV.rotation.y = tailSwing;
