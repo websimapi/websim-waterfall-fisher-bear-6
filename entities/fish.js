@@ -64,7 +64,7 @@ export function createFish(scene, score = 0) {
     const riverWidth = 7;
     const xPos = (Math.random() - 0.5) * riverWidth;
     const baseY = 2.1;
-    group.position.set(xPos, baseY, -22.5);
+    group.position.set(xPos, baseY, -12);
     const speedMultiplier = 1 + (score / 500);
     const swimSpeed = (0.05 + Math.random() * 0.05) * speedMultiplier;
     group.userData = {
@@ -91,14 +91,14 @@ export function updateFish(fish) {
     ud.swimTimer += 0.1;
     const weave = Math.sin(ud.swimTimer * ud.swimFrequency) * ud.swimAmplitude;
     fish.position.x = ud.initialX + weave;
-    // vertical motion (smoother, less bounce)
-    const bob = Math.sin(ud.swimTimer * 0.4 + 0.6) * 0.02 + Math.sin(ud.swimTimer * 0.9) * 0.015;
+    // vertical bob for fluidity (reduced amplitude to avoid bounce)
+    const bob = Math.sin(ud.swimTimer * 0.6 + 1.3) * 0.02 + Math.sin(ud.swimTimer * 1.2) * 0.015;
     fish.position.y = ud.baseY + bob;
     // orientation: slight yaw + bank based on turn rate
     const dx = fish.position.x - ud.prevX;
     ud.prevX = fish.position.x;
-    fish.rotation.y = ud.baseRotY + Math.sin(ud.swimTimer * ud.swimFrequency) * 0.08;
-    fish.rotation.z = THREE.MathUtils.clamp(-dx * 0.45, -0.15, 0.15);
+    fish.rotation.y = ud.baseRotY + Math.sin(ud.swimTimer * ud.swimFrequency) * 0.12;
+    fish.rotation.z = THREE.MathUtils.clamp(-dx * 0.6, -0.3, 0.3);
     // tail wag and fin flaps
     const tailSwing = Math.sin(ud.swimTimer * 2.2) * 0.5;
     if (ud.tailV) ud.tailV.rotation.y = tailSwing;
